@@ -1,3 +1,4 @@
+//Here, we import the dependencies necessary for the "Navbar" on our pages to function, including providing a path to get to the "SignupForm" and "LoginForm".
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
@@ -6,10 +7,12 @@ import LoginForm from './LoginForm';
 
 import Auth from '../utils/auth';
 
+//Here, we define and provide functionality for the "Navbar" for our "App".
 const AppNavbar = () => {
-  // set modal display state
+  //Here, we use "React"'s "useState" hook to manage the state of the variable "showModal", which is initially, "set" to false, so that no "Modal" (pop-up dialog) will display when the component renders.
   const [showModal, setShowModal] = useState(false);
 
+  //Here, we render some "React" components (which are being provided by "bootstrap") for the "Navbar". This parent element also provides a routes for users to view their "saved" books and log-out of the app.
   return (
     <>
       <Navbar bg='dark' variant='dark' expand='lg'>
@@ -23,7 +26,7 @@ const AppNavbar = () => {
               <Nav.Link as={Link} to='/'>
                 Search For Books
               </Nav.Link>
-              {/* if user is logged in show saved books and logout */}
+              
               {Auth.loggedIn() ? (
                 <>
                   <Nav.Link as={Link} to='/saved'>
@@ -38,13 +41,13 @@ const AppNavbar = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      {/* set modal data up */}
+      
       <Modal
         size='lg'
         show={showModal}
         onHide={() => setShowModal(false)}
         aria-labelledby='signup-modal'>
-        {/* tab container to do either signup or login component */}
+        
         <Tab.Container defaultActiveKey='login'>
           <Modal.Header closeButton>
             <Modal.Title id='signup-modal'>
